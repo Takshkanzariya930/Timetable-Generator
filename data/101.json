@@ -1,0 +1,9 @@
+{
+	"Occupied": {
+		"Monday": [{ "start": "10:00", "end": "11:00", "course_id": 4 }],
+		"Tuesday": [],
+		"Wednesday": [],
+		"Thursday": [],
+		"Friday": []
+	}
+}
