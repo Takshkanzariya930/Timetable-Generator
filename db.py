@@ -28,3 +28,7 @@ def add_class_to_classes_scheduled_per_week(rid):
 def is_it_lec_or_lab(rid):
     cursor.execute("SELECT type FROM courses WHERE rid = %s", (rid, ))
     return cursor.fetchone()[0]
+
+def show_courses_department_wise(department):
+    cursor.execute("Select * FROM courses WHERE department = %s", (department, ))
+    return cursor.fetchall()

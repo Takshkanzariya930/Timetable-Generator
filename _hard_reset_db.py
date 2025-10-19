@@ -83,17 +83,33 @@ INSERT INTO courses(cid, cname, type, eid, classes_per_week, department, group_n
 (202003403, "Ethos", "lec", 101, 2, "CE", NULL, 3, "311");
 """)
 
+cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '2')")
+cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '3')")
+cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '4')")
+cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '5')")
+cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '7')")
+cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '8')")
+cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '9')")
+cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '10')")
+cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '13')")
+cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '14')")
+cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '15')")
+cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '17')")
+cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '18')")
+cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '19')")
+cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '20')")
+cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '21')")
+cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '22')")
+
+
 blueprint = {"Occupied" : { "Monday" : [],
                             "Tuesday" : [],
                             "Wednesday" : [],
                             "Thursday" : [],
                             "Friday" : [] }}
 
+conn.commit()
+
 for row in show_all_teachers():  
     with(open(f"data/{row[3]}", "w") as f):
         json.dump(blueprint, f)
-        
-conn.commit()
-cursor.close()
-conn.close()
-        

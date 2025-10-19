@@ -1,9 +1,1 @@
-{
-	"Occupied": {
-		"Monday": [{ "start": "10:00", "end": "11:00", "course_id": 4 }],
-		"Tuesday": [],
-		"Wednesday": [],
-		"Thursday": [],
-		"Friday": []
-	}
-}
+{"Occupied": {"Monday": [{"time_slot_indices": 5, "course_id": 23}], "Tuesday": [{"time_slot_indices": 5, "course_id": 23}], "Wednesday": [], "Thursday": [], "Friday": []}}

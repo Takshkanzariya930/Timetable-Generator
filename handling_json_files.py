@@ -2,50 +2,39 @@ from db import *
 import json
 from datetime import datetime, timedelta
 
-start_of_day = datetime.strptime("09:00","%H:%M")
-end_of_day = datetime.strptime("17:00","%H:%M")
+time_slots = ["09:05", "10:00", "10:55", "11:50", "12:40", "01:25", "02:20", "03:15", "04:10"]
+working_days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 
-time_slots = [[]]
+break_slot = 4
 
-def is_occupied(eid, day, time):
+valid_indices = [i for i in range(len(time_slots)) if i != break_slot]
+
+def is_occupied(eid, day, time_slot_indices):
     
     file = show_teacher_with_eid(eid)[3]
-    time = datetime.strptime(time, "%H:%M")
     
     with(open(f"data/{file}") as f):
         data = json.load(f)["Occupied"]
     
     for occupied_time in data[day]:
-        
-        start = datetime.strptime(occupied_time["start"], "%H:%M")
-        end = datetime.strptime(occupied_time["end"], "%H:%M")
-        
-        if time >= start and time < end:
+        # print(occupied_time)
+        if time_slot_indices in occupied_time["time_slot_indices"]:
             return True
     
     return False
 
-def occupy_slot(eid, day, time, rid):
+def occupy_slot(eid, day, time_slot_indices, rid):
     
     file = show_teacher_with_eid(eid)[3]
-    
-    start = datetime.strptime(time, "%H:%M")
 
-    if is_it_lec_or_lab(rid) == "lec":
-        end = start + timedelta(hours=1)
-    else :
-        end = start + timedelta(hours=2)
-    
-    occ_dict = { "start": start , "end": end, "course_id": rid }
-    
-    if not is_occupied(eid, day, time):
-        
+    occ_dict = { "time_slot_indices" : time_slot_indices, "course_id": rid }
+
+    if not is_occupied(eid, day, time_slot_indices):
+
         with(open(f"data/{file}") as f):
             data = json.load(f)
             
         data["Occupied"][day].append(occ_dict)
-        
+
         with(open(f"data/{file}", "w") as f):
             json.dump(data, f)
-            
-# print(is_occupied(101, "Monday", "10:30"))
