@@ -1,5 +1,4 @@
 import mysql.connector
-import os
 
 conn = mysql.connector.connect(host="localhost", user="root", password='password', database="schedgendb")
 

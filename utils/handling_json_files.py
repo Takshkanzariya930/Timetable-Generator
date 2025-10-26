@@ -1,6 +1,5 @@
-from db import *
+from .db import *
 import json
-from datetime import datetime, timedelta
 
 time_slots = ["09:05", "10:00", "10:55", "11:50", "12:40", "01:25", "02:20", "03:15", "04:10"]
 working_days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
@@ -18,7 +17,7 @@ def is_occupied(eid, day, time_slot_indices):
     
     for occupied_time in data[day]:
         # print(occupied_time)
-        if time_slot_indices in occupied_time["time_slot_indices"]:
+        if time_slot_indices in [occupied_time["time_slot_indices"]]:
             return True
     
     return False
@@ -38,3 +37,10 @@ def occupy_slot(eid, day, time_slot_indices, rid):
 
         with(open(f"data/{file}", "w") as f):
             json.dump(data, f)
+
+def read_json_file(file):
+    
+    with(open(f"data/{file}") as f):
+        data = json.load(f)['Occupied']
+    
+    return data

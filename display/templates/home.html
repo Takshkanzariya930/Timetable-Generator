@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimeTable</title>
+</head>
+<body>
+
+    <form method="POST">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.teacher.label }}<br>
+        {{ form.teacher }}
+    </p>
+    <p>{{ form.submit() }}</p>
+
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Time</th>
+                {% for day in days %}
+                    <th>{{day}}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for idx in range(time_slots|length) %}
+                <tr>
+                    <td>{{time_slots[idx]}}</td>
+                    {% for day in days %}
+                        {% set slot_info = None %}
+                        {% for entry in data[day] %}
+                            {% if entry["time_slot_indices"][0] == idx %}
+                                {% set slot_info = courses[entry["course_id"]] %}
+                            {% endif %}
+
+                            {% if slot_info %}
+                            <td>
+                            <div>
+                                {{ slot_info["title"] }} ({{slot_info["course_number"]}})<br>
+                                <small>{{ slot_info["teacher_name"] }} — {{ slot_info["room_number"] }}</small>
+                            </div>
+                            </td>
+                            {% else %}
+                                <td></td>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

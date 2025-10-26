@@ -1,1 +1,15 @@
-{"Occupied": {"Monday": [{"time_slot_indices": 5, "course_id": 23}], "Tuesday": [{"time_slot_indices": 5, "course_id": 23}], "Wednesday": [], "Thursday": [], "Friday": []}}
+{
+	"Occupied": {
+		"Monday": [
+			{ "time_slot_indices": [5], "course_id": 24 },
+			{ "time_slot_indices": [1], "course_id": 23 }
+		],
+		"Tuesday": [{ "time_slot_indices": [5], "course_id": 24 }],
+		"Wednesday": [{ "time_slot_indices": [5], "course_id": 24 }],
+		"Thursday": [
+			{ "time_slot_indices": [5], "course_id": 24 },
+			{ "time_slot_indices": [1], "course_id": 23 }
+		],
+		"Friday": []
+	}
+}
