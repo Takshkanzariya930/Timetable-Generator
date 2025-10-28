@@ -2,30 +2,22 @@ from utils.db import *
 from utils.handling_json_files import *
 import random
 
-all_courses = []
-time_slots_local = time_slots.copy()
-working_days_local = working_days.copy()
+all_classes = [(x[1], x[2]) for x in show_all_classes()]
 
-for course in show_all_courses():
-    course = [course[i] for i in [0,3,4,5,10]]
-    all_courses.append(course)  
-
-for i in range(len(all_courses)):
-    time_slots_local = time_slots.copy()
+for dep, sem in all_classes:
+    
+    all_courses = [(x[0], x[4], x[5], x[10]) for x in show_courses_department_wise(dep, sem)]
     working_days_local = working_days.copy()
-    ri = random.randrange(0, len(all_courses))
-    course = all_courses[ri]
+    time_slots_local = time_slots.copy()
+
+    for course in all_courses:
+        
+        while course[2] != show_course_with_rid(course[0])[-1]:
+        
+            time_slot = random.randrange(0, len(time_slots_local))
+            day = working_days_local[random.randrange(0, len(working_days_local))]
     
-    for _ in range(course[3]):
-        rt = random.randrange(0, len(time_slots_local))
-        rd = random.randrange(0, len(working_days_local))
-        
-        occupy_slot(course[2], working_days_local[rd], [ri], course[0])
-        add_class_to_classes_scheduled_per_week(course[0])
-        
-        time_slots_local.pop(rt)
-        working_days_local.pop(rd)
-        
-    all_courses.pop(ri)
-    
-print(all_courses)
+            if  (not is_occupied(course[1], day, time_slot)) and (not is_class_occupied(dep, sem, day, time_slot)):
+                occupy_slot(course[1], day, time_slot, course[0])
+                occupy_class_slot(dep, sem, day, time_slot, course[0])
+                add_class_to_classes_scheduled_per_week(course[0])

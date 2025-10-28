@@ -8,6 +8,7 @@ cursor = conn.cursor()
 
 cursor.execute("DROP TABLE IF EXISTS courses")
 cursor.execute("DROP TABLE IF EXISTS teachers")
+cursor.execute("DROP TABLE IF EXISTS classes")
 
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS teachers (
@@ -34,6 +35,15 @@ CREATE TABLE IF NOT EXISTS courses (
     class VARCHAR(5),
     classes_scheduled_per_week INT DEFAULT 0,
     FOREIGN KEY (eid) REFERENCES teachers(eid) ON UPDATE CASCADE ON DELETE SET NULL
+)
+""")
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS classes (
+    cid INT AUTO_INCREMENT PRIMARY KEY,
+    department VARCHAR(255) NOT NULL,
+    sem INT NOT NULL,
+    file_path VARCHAR(255) NOT NULL
 )
 """)
 
@@ -83,6 +93,11 @@ INSERT INTO courses(cid, cname, type, eid, classes_per_week, department, group_n
 (202040301, "DS2", "lec", 101, 4, "CE", NULL, 3, "311");
 """)
 
+cursor.execute("""
+INSERT INTO classes(department, sem, file_path) VALUES
+("CE", 3, "CE3.json");
+""")
+
 cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '2')")
 cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '3')")
 cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '4')")
@@ -111,5 +126,9 @@ blueprint = {"Occupied" : { "Monday" : [],
 conn.commit()
 
 for row in show_all_teachers():  
+    with(open(f"data/{row[3]}", "w") as f):
+        json.dump(blueprint, f)
+        
+for row in show_all_classes():
     with(open(f"data/{row[3]}", "w") as f):
         json.dump(blueprint, f)

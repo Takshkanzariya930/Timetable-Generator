@@ -44,3 +44,33 @@ def read_json_file(file):
         data = json.load(f)['Occupied']
     
     return data
+
+def is_class_occupied(department, sem, day, time_slot_indices):
+    
+    file = show_class_with_department_sem(department, sem)[3]
+    
+    with(open(f"data/{file}") as f):
+        data = json.load(f)["Occupied"]
+    
+    for occupied_time in data[day]:
+        # print(occupied_time)
+        if time_slot_indices in [occupied_time["time_slot_indices"]]:
+            return True
+    
+    return False
+
+def occupy_class_slot(department, sem, day, time_slot_indices, rid):
+    
+    file = show_class_with_department_sem(department, sem)[3]
+
+    occ_dict = { "time_slot_indices" : time_slot_indices, "course_id": rid }
+
+    if not is_class_occupied(department, sem, day, time_slot_indices):
+
+        with(open(f"data/{file}") as f):
+            data = json.load(f)
+            
+        data["Occupied"][day].append(occ_dict)
+
+        with(open(f"data/{file}", "w") as f):
+            json.dump(data, f)

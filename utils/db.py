@@ -12,6 +12,10 @@ def show_all_courses():
     cursor.execute("SELECT * FROM courses")
     return cursor.fetchall()
 
+def show_all_classes():
+    cursor.execute("SELECT * FROM classes")
+    return cursor.fetchall()
+
 def show_teacher_with_eid(eid):
     cursor.execute("SELECT * FROM teachers WHERE eid = %s", (eid, ))
     return cursor.fetchone()
@@ -28,6 +32,10 @@ def is_it_lec_or_lab(rid):
     cursor.execute("SELECT type FROM courses WHERE rid = %s", (rid, ))
     return cursor.fetchone()[0]
 
-def show_courses_department_wise(department):
-    cursor.execute("Select * FROM courses WHERE department = %s", (department, ))
+def show_courses_department_wise(department, sem):
+    cursor.execute("SELECT * FROM courses WHERE department = %s AND sem = %s", (department, sem, ))
     return cursor.fetchall()
+
+def show_class_with_department_sem(department, sem):
+    cursor.execute("SELECT * FROM classes WHERE department = %s AND sem = %s", (department, sem, ))
+    return cursor.fetchone()
