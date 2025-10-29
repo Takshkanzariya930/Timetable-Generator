@@ -89,8 +89,7 @@ INSERT INTO courses(cid, cname, type, eid, classes_per_week, department, group_n
 (202040303, "DF", "lab", 105, 1, "CE", "D4", 3, "330A"),
 (900009901, "CPI", "lab", 103, 1, "CE", "A4-B4", 3, "311"),
 (900009901, "CPI", "lab", 103, 1, "CE", "C4-D4", 3, "311"),
-(202003403, "Ethos", "lec", 101, 2, "CE", NULL, 3, "311"),
-(202040301, "DS2", "lec", 101, 4, "CE", NULL, 3, "311");
+(202003403, "Ethos", "lec", 101, 2, "CE", NULL, 3, "311")
 """)
 
 cursor.execute("""

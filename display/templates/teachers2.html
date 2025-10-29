@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #999;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.teacher.label }} {{ form.teacher }}
+        {{ form.submit }}
+    </form>
+
+    <table>
+        <tr>
+            <th>Time</th>
+            {% for day in days %}
+                <th>{{ day }}</th>
+            {% endfor %}
+        </tr>
+
+        {% for idx in range(time_slots|length) %}
+            <tr>
+                <th>{{ time_slots[idx] }}</th>
+
+                {% for day in days %}
+                    {% set ns = namespace(slot_info=None) %}
+                    {% for entry in data[day] %}
+                        {% if entry["time_slot_indices"] == idx %}
+                            {% set ns.slot_info = courses[entry["course_id"]] %}
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if ns.slot_info %}
+                        <td>{{ ns.slot_info["title"] }}</td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
