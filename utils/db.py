@@ -28,12 +28,12 @@ def add_class_to_classes_scheduled_per_week(rid):
     cursor.execute("UPDATE courses SET classes_scheduled_per_week = classes_scheduled_per_week + 1 WHERE rid = %s", (rid, ))
     conn.commit()
 
-def is_it_lec_or_lab(rid):
-    cursor.execute("SELECT type FROM courses WHERE rid = %s", (rid, ))
-    return cursor.fetchone()[0]
+def show_courses_department_wise_lec(department, sem):
+    cursor.execute("SELECT * FROM courses WHERE department = %s AND sem = %s AND type = 'lec'", (department, sem, ))
+    return cursor.fetchall()
 
-def show_courses_department_wise(department, sem):
-    cursor.execute("SELECT * FROM courses WHERE department = %s AND sem = %s", (department, sem, ))
+def show_courses_department_wise_lab(department, sem):
+    cursor.execute("SELECT * FROM courses WHERE department = %s AND sem = %s AND type = 'lab'", (department, sem, ))
     return cursor.fetchall()
 
 def show_class_with_department_sem(department, sem):

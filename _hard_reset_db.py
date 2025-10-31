@@ -72,23 +72,26 @@ INSERT INTO courses(cid, cname, type, eid, classes_per_week, department, group_n
 (202040301, "DS", "lab", 109, 1, "CE", "B4", 3, "232"),
 (202040301, "DS", "lab", 108, 1, "CE", "C4", 3, "232"),
 (202040301, "DS", "lab", 101, 1, "CE", "D4", 3, "232"),
-(202040301, "DBMS", "lec", 106, 4, "CE", NULL, 3, "311"),
-(202040301, "DBMS", "lab", 110, 1, "CE", "A4", 3, "CE5"),
-(202040301, "DBMS", "lab", 106, 1, "CE", "B4", 3, "CE5"),
-(202040301, "DBMS", "lab", 110, 1, "CE", "C4", 3, "CE5"),
-(202040301, "DBMS", "lab", 111, 1, "CE", "D4", 3, "CE5"),
+(202040302, "DBMS", "lec", 106, 4, "CE", NULL, 3, "311"),
+(202040302, "DBMS", "lab", 110, 1, "CE", "A4", 3, "CE5"),
+(202040302, "DBMS", "lab", 106, 1, "CE", "B4", 3, "CE5"),
+(202040302, "DBMS", "lab", 110, 1, "CE", "C4", 3, "CE5"),
+(202040302, "DBMS", "lab", 111, 1, "CE", "D4", 3, "CE5"),
 (202003402, "FEBM", "lec", 107, 3, "CE", NULL, 3, "311"),
 (202000303, "PSNM", "lec", 102, 3, "CE", NULL, 3, "311"),
 (202000303, "PSNM", "lab", 102, 1, "CE", "A4", 3, "211"),
-(202000303, "PSNM", "lab", 113, 1, "CE", "B4-C4", 3, "211"),
+(202000303, "PSNM", "lab", 113, 1, "CE", "B4", 3, "211"),
+(202000303, "PSNM", "lab", 113, 1, "CE", "C4", 3, "211"),
 (202000303, "PSNM", "lab", 114, 1, "CE", "D4", 3, "211"),
 (202040303, "DF", "lec", 105, 3, "CE", NULL, 3, "311"),
 (202040303, "DF", "lab", 112, 1, "CE", "A4", 3, "329A"),
 (202040303, "DF", "lab", 105, 1, "CE", "B4", 3, "330A"),
 (202040303, "DF", "lab", 104, 1, "CE", "C4", 3, "329A"),
 (202040303, "DF", "lab", 105, 1, "CE", "D4", 3, "330A"),
-(900009901, "CPI", "lab", 103, 1, "CE", "A4-B4", 3, "311"),
-(900009901, "CPI", "lab", 103, 1, "CE", "C4-D4", 3, "311"),
+(900009901, "CPI", "lab", 103, 1, "CE", "A4", 3, "311"),
+(900009901, "CPI", "lab", 103, 1, "CE", "B4", 3, "311"),
+(900009901, "CPI", "lab", 103, 1, "CE", "C4", 3, "311"),
+(900009901, "CPI", "lab", 103, 1, "CE", "D4", 3, "311"),
 (202003403, "Ethos", "lec", 101, 2, "CE", NULL, 3, "311")
 """)
 
@@ -97,37 +100,47 @@ INSERT INTO classes(department, sem, file_path) VALUES
 ("CE", 3, "CE3.json");
 """)
 
-cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '2')")
-cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '3')")
-cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '4')")
-cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '5')")
-cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '7')")
-cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '8')")
-cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '9')")
-cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '10')")
-cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '13')")
-cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '14')")
-cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '15')")
-cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '17')")
-cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '18')")
-cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '19')")
-cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '20')")
-cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '21')")
-cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '22')")
+# cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '2')")
+# cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '3')")
+# cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '4')")
+# cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '5')")
+# cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '7')")
+# cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '8')")
+# cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '9')")
+# cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '10')")
+# cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '13')")
+# cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '14')")
+# cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '15')")
+# cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '16')")
+# cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '18')")
+# cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '19')")
+# cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '20')")
+# cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '21')")
+# cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '22')")
+# cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '23')")
+# cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '24')")
+# cursor.execute("DELETE FROM `schedgendb`.`courses` WHERE (`rid` = '25')")
 
 
-blueprint = {"Occupied" : { "Monday" : [],
+blueprint_teachers = {"Occupied" : { "Monday" : [],
                             "Tuesday" : [],
                             "Wednesday" : [],
                             "Thursday" : [],
                             "Friday" : [] }}
 
+blueprint_classes = {"Occupied" : { 
+                        "A" : { "Monday" : [], "Tuesday" : [], "Wednesday" : [], "Thursday" : [], "Friday" : [] },
+                        "B" : { "Monday" : [], "Tuesday" : [], "Wednesday" : [], "Thursday" : [], "Friday" : [] },
+                        "C" : { "Monday" : [], "Tuesday" : [], "Wednesday" : [], "Thursday" : [], "Friday" : [] },
+                        "D" : { "Monday" : [], "Tuesday" : [], "Wednesday" : [], "Thursday" : [], "Friday" : [] }
+                    }}
+
 conn.commit()
 
 for row in show_all_teachers():  
     with(open(f"data/{row[3]}", "w") as f):
-        json.dump(blueprint, f)
+        json.dump(blueprint_teachers, f)
         
 for row in show_all_classes():
     with(open(f"data/{row[3]}", "w") as f):
-        json.dump(blueprint, f)
+        json.dump(blueprint_classes, f)

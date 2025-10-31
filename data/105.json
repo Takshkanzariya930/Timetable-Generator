@@ -1,1 +1,1 @@
-{"Occupied": {"Monday": [], "Tuesday": [], "Wednesday": [], "Thursday": [{"time_slot_indices": 2, "course_id": 16}, {"time_slot_indices": 6, "course_id": 16}], "Friday": [{"time_slot_indices": 8, "course_id": 16}]}}
+{"Occupied": {"Monday": [], "Tuesday": [{"time_slot_indices": 0, "course_id": 17}], "Wednesday": [{"time_slot_indices": 0, "course_id": 17}], "Thursday": [], "Friday": [{"time_slot_indices": 6, "course_id": 17}]}}
