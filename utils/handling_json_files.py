@@ -12,7 +12,7 @@ def is_occupied(eid, day, time_slot_indices):
         data = json.load(f)["Occupied"]
     
     for occupied_time in data[day]:
-        # print(occupied_time)
+        
         if time_slot_indices == occupied_time["time_slot_indices"]:
             return True
     

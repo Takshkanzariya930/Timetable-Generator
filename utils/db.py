@@ -39,3 +39,11 @@ def show_courses_department_wise_lab(department, sem):
 def show_class_with_department_sem(department, sem):
     cursor.execute("SELECT * FROM classes WHERE department = %s AND sem = %s", (department, sem, ))
     return cursor.fetchone()
+
+def is_course_lab(rid):
+    cursor.execute("SELECT * FROM courses WHERE rid = %s AND type = 'lab'", (rid, ))
+    
+    if cursor.fetchone():
+        return True
+    
+    return False

@@ -126,7 +126,8 @@ blueprint_teachers = {"Occupied" : { "Monday" : [],
                             "Tuesday" : [],
                             "Wednesday" : [],
                             "Thursday" : [],
-                            "Friday" : [] }}
+                            "Friday" : []
+                     }}
 
 blueprint_classes = {"Occupied" : { 
                         "A" : { "Monday" : [], "Tuesday" : [], "Wednesday" : [], "Thursday" : [], "Friday" : [] },
